@@ -1,0 +1,6 @@
+backend/.env
+# .gitignore
+venv/
+.env
+__pycache__/
+*.pyc
