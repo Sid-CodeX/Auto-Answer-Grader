@@ -1,213 +1,143 @@
-# Auto-Answer Grader
+Auto-Answer Grader
+🚀 Project Overview
+Auto-Answer Grader is a modern web application that automates the evaluation of descriptive student answers using Artificial Intelligence (AI) and Natural Language Processing (NLP). It replaces traditional manual grading methods with a faster, fairer, and more insightful system — ideal for educators seeking to streamline subjective assessments.
 
-## Project Overview
+🎯 The Challenge
+Manual grading of open-ended answers presents serious bottlenecks:
 
-The **Auto-Answer Grader** is an innovative web application designed to automate the evaluation of subjective, descriptive answers in educational settings. It leverages cutting-edge Artificial Intelligence (AI) and Natural Language Processing (NLP) to transform the traditional grading process, making it more efficient, consistent, and insightful.
+⏱️ Time-Consuming: Drains instructional time.
 
-### The Challenge
+⚖️ Inconsistent Evaluation: Prone to human bias and variability.
 
-Manual grading of open-ended questions presents significant hurdles for educators:
-* **Time-Intensive:** Consumes valuable time that could be dedicated to teaching and curriculum development.
-* **Subjectivity & Inconsistency:** Grading can vary between different evaluators or even for the same evaluator over time, raising concerns about fairness.
-* **Delayed Feedback:** Students often receive feedback long after completing assignments, diminishing its impact on learning.
-* **Limited Insights:** Traditional methods rarely provide granular, actionable feedback beyond a simple score.
+🐌 Delayed Feedback: Slows the learning process.
 
-### Our Solution
+🔍 Lack of Insights: Fails to offer in-depth, actionable feedback.
 
-The Auto-Answer Grader provides a comprehensive digital solution to these challenges through a streamlined, intelligent workflow:
-1.  **Question Paper Ingestion:** Users upload PDF question papers, from which the system intelligently extracts questions and their corresponding answer keys.
-2.  **Student Answer Submission:** Students' answer sheets (in PDF format) are uploaded for automated processing.
-3.  **Intelligent Evaluation:** AI/NLP models perform semantic similarity analysis between student responses and answer keys, subsequently generating precise scores and constructive, contextual feedback.
-4.  **Interactive Results Dashboard:** A intuitive user interface presents a clear overview of performance, including overall scores, a detailed per-question breakdown, similarity metrics, and personalized feedback.
+💡 Our Solution
+Auto-Answer Grader solves these challenges through an end-to-end AI-powered pipeline:
 
-## Features
+📥 Upload Question Paper: Users submit PDF question papers.
 
-* **PDF Document Parsing:** Robust extraction of questions and answer keys from uploaded PDF question papers.
-* **Semantic Similarity Scoring:** Utilizes advanced NLP techniques to evaluate student answers based on their meaning, providing more accurate assessments than keyword-based matching.
-* **AI-Driven Feedback Generation:** Provides detailed, personalized feedback for each graded answer using powerful Large Language Models.
-* **Automated Scoring:** Assigns scores precisely based on semantic similarity to the answer key and the defined marking scheme.
-* **Comprehensive Interactive Dashboard:** Offers visual insights into performance with charts (e.g., score distribution, overall attainment) and a detailed breakdown for each question.
-* **Guided Workflow:** A clear, step-by-step user interface ensures ease of use from document upload to results analysis.
+🧠 Answer Key Extraction: System parses questions and model answers.
 
-## Technologies Used
+📄 Student Answer Upload: Upload student answer sheets (PDF).
 
-This project is built on a modern, high-performance full-stack architecture, ensuring both a responsive user experience and powerful backend processing.
+🧾 Automated Evaluation: Semantic similarity & LLMs score answers and generate feedback.
 
-### Frontend (Client-Side)
+📊 Interactive Dashboard: View scores, metrics, and detailed feedback visually.
 
-* **React:** A leading JavaScript library for building dynamic and highly responsive user interfaces.
-* **TypeScript:** A statically-typed superset of JavaScript, enhancing code quality, maintainability, and developer productivity by catching errors early.
-* **Vite:** A next-generation frontend tooling that provides an exceptionally fast development server and optimized build processes.
-* **Shadcn/ui:** A collection of highly customizable and accessible UI components built on Radix UI and styled with Tailwind CSS, accelerating UI development.
-* **Tailwind CSS:** A utility-first CSS framework that enables rapid and consistent styling directly within the markup.
-* **Recharts:** A powerful and flexible charting library for React, used to visualize evaluation data effectively.
-* **Lucide-React:** Provides a comprehensive set of beautiful and customizable SVG icons for the UI.
-* **`localStorage`:** Utilized for client-side persistence of temporary session data.
+🔧 Features
+📚 PDF Parsing: Extracts questions and answer keys from PDFs.
 
-### Backend (Server-Side)
+🧠 Semantic Evaluation: Scores answers using sentence embeddings, not just keywords.
 
-* **FastAPI:** A modern, high-performance web framework for building APIs with Python, known for its speed and automatic interactive documentation (Swagger UI).
-* **Pydantic:** Integrated with FastAPI, this library provides robust data validation and settings management, ensuring data integrity across the API.
-* **`sentence-transformers`:** A Python library crucial for our AI core, used to compute dense vector embeddings from text, enabling accurate semantic similarity comparisons.
-* **Large Language Models (LLMs):** Integrated via external APIs (e.g., Groq API) to generate sophisticated, context-aware feedback for student answers, emphasizing rapid inference.
-* **`python-fitz` (PyMuPDF):** A high-performance Python library used for parsing and extracting textual content from PDF documents (both question papers and student answers).
-* **Uvicorn:** An ASGI server responsible for running the FastAPI application, providing efficient asynchronous request handling.
+✍️ LLM-Based Feedback: Personalized AI feedback on every answer.
 
-## Getting Started
+✅ Automated Scoring: Consistent, objective evaluation.
 
-Follow these steps to set up and run the Auto-Answer Grader project locally.
+📈 Performance Dashboard: Interactive visuals for scores and analytics.
 
-### Prerequisites
+👣 Step-by-Step UI: Intuitive, guided grading workflow.
 
-Ensure you have the following installed on your system:
+🛠️ Technologies Used
+🖥️ Frontend
+React – Modern UI library
 
-* **Python:** Version 3.8 or higher.
-* **Node.js:** Latest LTS (Long Term Support) version recommended.
-* **npm or Yarn:** (npm is used in these instructions).
-* **Git:** For cloning the repository.
+TypeScript – Typed JavaScript for robust development
 
-### 1. Clone the Repository
+Vite – Lightning-fast bundler
 
-```bash
-git clone [https://github.com/Sid-CodeX/Auto-Answer-Grader.git](https://github.com/Sid-CodeX/Auto-Answer-Grader.git)
+Tailwind CSS – Utility-first CSS
+
+Shadcn/ui – Accessible UI components
+
+Recharts – Data visualization
+
+Lucide-React – Beautiful SVG icon set
+
+localStorage – Temporary session persistence
+
+⚙️ Backend
+FastAPI – High-performance Python web framework
+
+Pydantic – Data validation and schema management
+
+sentence-transformers – Semantic text embeddings
+
+LLMs via Groq API – Contextual AI feedback
+
+PyMuPDF (python-fitz) – PDF parsing engine
+
+Uvicorn – ASGI web server
+
+⚙️ Getting Started
+✅ Prerequisites
+Ensure the following are installed:
+
+Python 3.8+
+
+Node.js (Latest LTS)
+
+npm (or Yarn)
+
+Git
+
+📦 1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/Sid-CodeX/Auto-Answer-Grader.git
 cd Auto-Answer-Grader
-
-
-Here is a professional README.md file for your Auto-Answer Grader project, without the detailed project structure breakdown.
-
-Markdown
-
-# Auto-Answer Grader
-
-## Project Overview
-
-The **Auto-Answer Grader** is an innovative web application designed to automate the evaluation of subjective, descriptive answers in educational settings. It leverages cutting-edge Artificial Intelligence (AI) and Natural Language Processing (NLP) to transform the traditional grading process, making it more efficient, consistent, and insightful.
-
-### The Challenge
-
-Manual grading of open-ended questions presents significant hurdles for educators:
-* **Time-Intensive:** Consumes valuable time that could be dedicated to teaching and curriculum development.
-* **Subjectivity & Inconsistency:** Grading can vary between different evaluators or even for the same evaluator over time, raising concerns about fairness.
-* **Delayed Feedback:** Students often receive feedback long after completing assignments, diminishing its impact on learning.
-* **Limited Insights:** Traditional methods rarely provide granular, actionable feedback beyond a simple score.
-
-### Our Solution
-
-The Auto-Answer Grader provides a comprehensive digital solution to these challenges through a streamlined, intelligent workflow:
-1.  **Question Paper Ingestion:** Users upload PDF question papers, from which the system intelligently extracts questions and their corresponding answer keys.
-2.  **Student Answer Submission:** Students' answer sheets (in PDF format) are uploaded for automated processing.
-3.  **Intelligent Evaluation:** AI/NLP models perform semantic similarity analysis between student responses and answer keys, subsequently generating precise scores and constructive, contextual feedback.
-4.  **Interactive Results Dashboard:** A intuitive user interface presents a clear overview of performance, including overall scores, a detailed per-question breakdown, similarity metrics, and personalized feedback.
-
-## Features
-
-* **PDF Document Parsing:** Robust extraction of questions and answer keys from uploaded PDF question papers.
-* **Semantic Similarity Scoring:** Utilizes advanced NLP techniques to evaluate student answers based on their meaning, providing more accurate assessments than keyword-based matching.
-* **AI-Driven Feedback Generation:** Provides detailed, personalized feedback for each graded answer using powerful Large Language Models.
-* **Automated Scoring:** Assigns scores precisely based on semantic similarity to the answer key and the defined marking scheme.
-* **Comprehensive Interactive Dashboard:** Offers visual insights into performance with charts (e.g., score distribution, overall attainment) and a detailed breakdown for each question.
-* **Guided Workflow:** A clear, step-by-step user interface ensures ease of use from document upload to results analysis.
-
-## Technologies Used
-
-This project is built on a modern, high-performance full-stack architecture, ensuring both a responsive user experience and powerful backend processing.
-
-### Frontend (Client-Side)
-
-* **React:** A leading JavaScript library for building dynamic and highly responsive user interfaces.
-* **TypeScript:** A statically-typed superset of JavaScript, enhancing code quality, maintainability, and developer productivity by catching errors early.
-* **Vite:** A next-generation frontend tooling that provides an exceptionally fast development server and optimized build processes.
-* **Shadcn/ui:** A collection of highly customizable and accessible UI components built on Radix UI and styled with Tailwind CSS, accelerating UI development.
-* **Tailwind CSS:** A utility-first CSS framework that enables rapid and consistent styling directly within the markup.
-* **Recharts:** A powerful and flexible charting library for React, used to visualize evaluation data effectively.
-* **Lucide-React:** Provides a comprehensive set of beautiful and customizable SVG icons for the UI.
-* **`localStorage`:** Utilized for client-side persistence of temporary session data.
-
-### Backend (Server-Side)
-
-* **FastAPI:** A modern, high-performance web framework for building APIs with Python, known for its speed and automatic interactive documentation (Swagger UI).
-* **Pydantic:** Integrated with FastAPI, this library provides robust data validation and settings management, ensuring data integrity across the API.
-* **`sentence-transformers`:** A Python library crucial for our AI core, used to compute dense vector embeddings from text, enabling accurate semantic similarity comparisons.
-* **Large Language Models (LLMs):** Integrated via external APIs (e.g., Groq API) to generate sophisticated, context-aware feedback for student answers, emphasizing rapid inference.
-* **`python-fitz` (PyMuPDF):** A high-performance Python library used for parsing and extracting textual content from PDF documents (both question papers and student answers).
-* **Uvicorn:** An ASGI server responsible for running the FastAPI application, providing efficient asynchronous request handling.
-
-## Getting Started
-
-Follow these steps to set up and run the Auto-Answer Grader project locally.
-
-### Prerequisites
-
-Ensure you have the following installed on your system:
-
-* **Python:** Version 3.8 or higher.
-* **Node.js:** Latest LTS (Long Term Support) version recommended.
-* **npm or Yarn:** (npm is used in these instructions).
-* **Git:** For cloning the repository.
-
-### 1. Clone the Repository
-
-```bash
-git clone [https://github.com/Sid-CodeX/Auto-Answer-Grader.git](https://github.com/Sid-CodeX/Auto-Answer-Grader.git)
-cd Auto-Answer-Grader
-2. Backend Setup
-Navigate into the backend directory, set up your Python environment, install dependencies, and configure your API key.
-
-Bash
-
+🧪 2. Backend Setup
+bash
+Copy
+Edit
 cd backend
 
-# Create a Python virtual environment to manage dependencies
+# Create and activate a virtual environment
 python -m venv venv
-
-# Activate the virtual environment
-# On Windows:
+# Windows
 .\venv\Scripts\activate
-# On macOS/Linux:
+# macOS/Linux
 source venv/bin/activate
 
-# Install all required Python packages
+# Install backend dependencies
 pip install -r requirements.txt
 
-# Create a .env file for your API keys
-# Copy the content from .env.example into a new file named .env
-# Replace "your_groq_api_key_here" with your actual Groq API Key
-# Example .env content:
-# GROQ_API_KEY="your_groq_api_key_here"
+# Create a .env file
+cp .env.example .env
+# Replace placeholder API keys with actual values
 
-# Start the backend server
+# Run the FastAPI server
 uvicorn main:app --reload
-The backend server should now be running, typically accessible at http://127.0.0.1:8000. Keep this terminal window open.
+Server should run at http://127.0.0.1:8000
 
-3. Frontend Setup
-Open a new terminal window. Navigate into the frontend directory, install Node.js dependencies, and launch the development server.
+💻 3. Frontend Setup
+bash
+Copy
+Edit
+cd ../frontend
 
-Bash
-
-cd ../frontend # Go back to root and then into frontend
-# OR if you are already in the root (Auto-Answer-Grader):
-# cd frontend
-
-# Install Node.js dependencies (e.g., React, Vite, Tailwind CSS)
+# Install frontend dependencies
 npm install
 
-# Start the frontend development server
+# Start development server
 npm run dev
-The frontend application will typically open in your default web browser at http://localhost:5173 or http://localhost:8080 (refer to your terminal output for the exact URL).
+The app will be available at http://localhost:5173 (or as shown in your terminal).
 
-Usage Guide
-Once both the backend and frontend servers are running:
+📚 Usage Guide
+Upload Question Paper:
+Submit a PDF containing questions and answer keys.
 
-Upload Question Paper: On the application's first screen, click the upload button to select and submit your question paper in PDF format. The system will process this to extract questions and their answer keys.
+Upload Student Answer Sheet:
+Provide the student’s answer PDF.
 
-Upload Student Answer: After the question paper is parsed, you will be prompted to upload a student's answer sheet, also in PDF format.
+Get Evaluation:
+View:
 
-View Evaluation Results: Upon successful submission, the system will perform the AI-driven evaluation. You will then be redirected to the Results Dashboard, where you can view:
+Total score & percentage
 
-The student's total score and overall percentage.
+Per-question similarity score
 
-A visual breakdown of scores per question.
+Full AI-generated feedback
 
-A detailed analysis for each question, including the original question text, the student's submitted answer, the calculated similarity score, and comprehensive AI-generated feedback.
-
-Contributing
