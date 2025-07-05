@@ -23,11 +23,10 @@ try:
     model = SentenceTransformer("all-MiniLM-L6-v2")
 except Exception as e:
     logger.error(f"Failed to load SentenceTransformer model: {e}")
-    # Consider a fallback or raise a critical error if model loading is essential
-    model = None # Or raise an exception to prevent server start if critical
+   
+    model = None 
 
 
-# --- NEW FUNCTION TO EXTRACT STUDENT ANSWERS USING LLM ---
 async def extract_student_answers_llm(student_text: str, questions: list) -> dict:
     answers = {}
     for q in questions:
@@ -48,10 +47,10 @@ Extracted Student Answer:
         """
         try:
             response = client.chat.completions.create(
-                model="llama3-8b-8192", # Using a smaller model for this task might be faster/cheaper
+                model="llama3-8b-8192", 
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=500 # Limit response length
+                max_tokens=500 
             )
             answer_text = response.choices[0].message.content.strip()
             answers[q["question_id"]] = answer_text if answer_text else "Answer not found"
@@ -92,7 +91,6 @@ async def evaluate_submission(student_file: UploadFile, question_data: dict):
                     similarity = util.pytorch_cos_sim(emb_key, emb_ans).item()
                 except Exception as e:
                     logger.warning(f"Error calculating similarity for QID {qid}: {e}")
-                    # Fallback if encoding fails, e.g., due to empty string
                     similarity = 0.0
 
             prompt = f"""
@@ -120,13 +118,12 @@ Return JSON:
                 res = client.chat.completions.create(
                     model="llama3-70b-8192",
                     messages=[{"role": "user", "content": prompt}],
-                    temperature=0.1, # Lower temp for consistent grading
+                    temperature=0.1, 
                     response_format={"type": "json_object"}
                 )
                 content = res.choices[0].message.content
                 logger.info(f"LLM grading raw response content for QID {qid}: {content[:500]}...")
 
-                # Attempt to parse directly
                 eval_result = json.loads(content)
                 if not isinstance(eval_result.get("score"), int) or not isinstance(eval_result.get("feedback"), str):
                     raise ValueError("Invalid JSON structure from LLM for grading.")

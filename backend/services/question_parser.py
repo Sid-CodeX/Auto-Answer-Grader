@@ -56,17 +56,16 @@ async def parse_question_paper(file: UploadFile):
         response = client.chat.completions.create(
             model="llama3-70b-8192",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.1, # Lower temperature for more deterministic JSON output
-            response_format={"type": "json_object"} # Specify JSON object output if supported by Groq
+            temperature=0.1, 
+            response_format={"type": "json_object"} 
         )
 
         content = response.choices[0].message.content
-        logger.info(f"LLM raw response content: {content[:500]}...") # Log response for debugging
+        logger.info(f"LLM raw response content: {content[:500]}...") 
 
         try:
-            # Attempt to parse directly, as LLM is instructed to return only JSON
+            
             parsed_json = json.loads(content)
-            # Basic validation to ensure it matches expected structure
             if "total_marks" in parsed_json and "questions" in parsed_json and isinstance(parsed_json["questions"], list):
                 return parsed_json
             else:
@@ -74,7 +73,7 @@ async def parse_question_paper(file: UploadFile):
                 return {"error": "LLM returned unexpected JSON structure."}
         except json.JSONDecodeError:
             logger.error(f"LLM response was not valid JSON: {content}")
-            # Fallback to regex if direct parse fails, though less ideal
+            
             match = re.search(r"\{.*\}", content, re.DOTALL)
             if match:
                 try:
