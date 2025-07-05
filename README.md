@@ -1,8 +1,3 @@
-Here is the comprehensive and professional `README.md` file for your "Auto-Answer Grader" project. This version is designed to be thorough and suitable for a project's main documentation, covering all key aspects we've discussed.
-
------
-
-```markdown
 # Auto-Answer Grader
 
 ## Project Overview
