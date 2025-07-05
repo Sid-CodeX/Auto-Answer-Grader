@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, FileText, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
@@ -9,20 +8,29 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { QuestionData } from '@/pages/Index';
 
+// Props Interface
 interface QuestionPaperUploadProps {
-  baseApiUrl: string;
-  onSuccess: (data: QuestionData) => void;
+  baseApiUrl: string;                        
+  onSuccess: (data: QuestionData) => void;   
 }
+
+
+// Component: QuestionPaperUpload
 
 export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
   baseApiUrl,
   onSuccess,
 }) => {
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [parseSuccess, setParseSuccess] = useState(false);
-  const { toast } = useToast();
+  // Local state
+  const [isUploading, setIsUploading] = useState(false);                // Tracks upload state
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null); // Stores selected file
+  const [parseSuccess, setParseSuccess] = useState(false);            // Indicates successful parsing
+  const { toast } = useToast();                                      // Toast notification hook
 
+  /**
+   * Handles file drop event from drag-and-drop input.
+   * Only accepts PDF files.
+   */
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (file && file.type === 'application/pdf') {
@@ -37,14 +45,19 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
     }
   }, [toast]);
 
+  // Dropzone hook setup
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'application/pdf': ['.pdf']
+      'application/pdf': ['.pdf'],
     },
     multiple: false,
   });
 
+  /**
+   * Handles uploading and parsing the selected question paper.
+   * Sends the file to the backend and triggers `onSuccess` callback on success.
+   */
   const handleUpload = async () => {
     if (!uploadedFile) return;
 
@@ -64,12 +77,13 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
 
       const data: QuestionData = await response.json();
       setParseSuccess(true);
-      
+
       toast({
         title: "Question paper parsed successfully!",
         description: `Found ${data.questions.length} questions with ${data.total_marks} total marks.`,
       });
 
+      // Trigger next step after brief delay
       setTimeout(() => {
         onSuccess(data);
       }, 1500);
@@ -86,9 +100,13 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
     }
   };
 
+
+  // Component UI
+
   return (
     <div className="max-w-3xl mx-auto">
       <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
+        {/* Header */}
         <CardHeader className="text-center pb-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-t-lg">
           <CardTitle className="flex items-center justify-center space-x-3 text-2xl">
             <div className="p-2 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg shadow-lg">
@@ -102,7 +120,10 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
             Upload your PDF question paper to begin the automated grading process
           </CardDescription>
         </CardHeader>
+
+        {/* Content */}
         <CardContent className="space-y-8 p-8">
+          {/* Dropzone Area */}
           <div
             {...getRootProps()}
             className={cn(
@@ -116,6 +137,7 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
           >
             <input {...getInputProps()} />
             <div className="flex flex-col items-center space-y-6">
+              {/* File uploaded successfully */}
               {uploadedFile ? (
                 <div className="relative">
                   <CheckCircle className="h-20 w-20 text-emerald-500 animate-scale-in" />
@@ -127,7 +149,8 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
                   isDragActive ? "text-indigo-500 scale-110" : "text-slate-400 group-hover:text-slate-500"
                 )} />
               )}
-              
+
+              {/* File Details or Instructions */}
               {uploadedFile ? (
                 <div className="text-center">
                   <p className="text-xl font-semibold text-emerald-700 mb-2">
@@ -149,6 +172,7 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
             </div>
           </div>
 
+          {/* Success Alert */}
           {parseSuccess && (
             <Alert className="bg-gradient-to-r from-emerald-50 to-green-50 border-emerald-200 animate-fade-in">
               <CheckCircle className="h-4 w-4 text-emerald-600" />
@@ -158,6 +182,7 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
             </Alert>
           )}
 
+          {/* Upload Button */}
           {uploadedFile && !parseSuccess && (
             <Button 
               onClick={handleUpload} 
@@ -179,6 +204,7 @@ export const QuestionPaperUpload: React.FC<QuestionPaperUploadProps> = ({
             </Button>
           )}
 
+          {/* Parsing Tips */}
           <Alert className="bg-slate-50 border-slate-200">
             <AlertCircle className="h-4 w-4 text-slate-600" />
             <AlertDescription className="text-slate-600">
